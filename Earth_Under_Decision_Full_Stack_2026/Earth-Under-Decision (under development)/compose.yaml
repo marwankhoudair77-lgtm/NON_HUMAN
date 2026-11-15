@@ -1,0 +1,50 @@
+services:
+  db:
+    image: postgis/postgis:16-3.4
+    container_name: earth-under-decision-db
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: earth_under_decision
+      POSTGRES_USER: earth_app
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-CHANGE_ME_LOCAL_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U earth_app -d earth_under_decision"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: earth-under-decision-web
+    restart: unless-stopped
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      APP_ENV: production
+      APP_NAME: Earth Under Decision
+      DATABASE_URL: postgresql+psycopg://earth_app:${POSTGRES_PASSWORD:-CHANGE_ME_LOCAL_PASSWORD}@db:5432/earth_under_decision
+      LOCAL_STORAGE_ROOT: /app/data
+      FRONTEND_DIST_DIR: /app/frontend_dist
+      ADMIN_API_TOKEN: ${ADMIN_API_TOKEN:-CHANGE_ME_TO_A_LONG_RANDOM_SECRET}
+      CORS_ORIGINS: http://localhost:5173
+      PORT: 8000
+      MAX_UPLOAD_SIZE_MB: 500
+    ports:
+      - "8000:8000"
+    volumes:
+      - earth_data:/app/data
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=3)"]
+      interval: 10s
+      timeout: 5s
+      retries: 15
+      start_period: 40s
+
+volumes:
+  postgres_data:
+  earth_data:

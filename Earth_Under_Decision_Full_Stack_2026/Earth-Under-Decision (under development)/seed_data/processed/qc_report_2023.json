@@ -1,0 +1,156 @@
+{
+  "year": 2023,
+  "raw_files": {
+    "gldas_evap_raw": {
+      "filename": "GLDAS_NOAH025_3H_2_1_Evap_tavg_30.9000_31.0000_2022-12-27_to_2024-01-08.csv",
+      "size_bytes": 112419,
+      "sha256": "3a0806e0064336962645d8f6999b03e74fd796b1678ac6618fee2ef10a6037b9"
+    },
+    "gldas_root_moisture_raw": {
+      "filename": "GLDAS_NOAH025_3H_2_1_RootMoist_inst_30.9000_31.0000_2022-12-27_to_2024-01-08.csv",
+      "size_bytes": 99432,
+      "sha256": "896f8f2b4493639782684e0552218e0845eaca2803c3c754f9171bad6504f6a1"
+    },
+    "gpm_imerg_geotiff": {
+      "filename": "GIOVANNI-g4.timeAvgMap.GPM_3IMERGM_07_precipitation.20230101-20231231.29E_30N_32E_31N.tif",
+      "size_bytes": 8432,
+      "sha256": "0747ea175383cf7b34a4d3b483f23a2c87b76cd51946e417e798a157ff3fce15"
+    },
+    "noaa_ghcn_daily_raw": {
+      "filename": "4432340.csv",
+      "size_bytes": 200686,
+      "sha256": "a6344c93e23a54d897fb1bc0526579b7e24ebafd6c87ad6071a8d8b0af927535"
+    }
+  },
+  "method": {
+    "gldas_evapotranspiration": "Evap_tavg (kg m-2 s-1) multiplied by 10800 seconds per 3-hour interval, then summed by UTC calendar day; 1 kg m-2 water equivalent = 1 mm.",
+    "gldas_root_moisture": "RootMoist_inst (kg m-2) summarized by UTC day using mean/min/max; retained in kg m-2 (numerically equivalent to mm water equivalent).",
+    "gpm_precipitation": "GPM_3IMERGM v07 time-mean rate (mm/hr) from 2023 GeoTIFF. Annualized equivalent = mean rate × 24 × 365; this is not a directly summed daily/monthly accumulation product.",
+    "noaa_reference": "NOAA GHCN-Daily is retained as an external reference only; it is not NASA data and is not mixed into NASA-only indicator results."
+  },
+  "warnings": [
+    "GLDAS point series represents one model grid point near 30.9 N, 31.0 E, not an area-average over the Nile Delta.",
+    "The GPM GeoTIFF is GPM_3IMERGM monthly v07 and stores a temporal-mean rate in mm/hr; annualized values are rate-equivalent estimates.",
+    "NOAA station temperature is an external comparison source with incomplete Alexandria coverage; it must not be presented as NASA data.",
+    "No NDVI or MODIS LST input files were supplied in this data batch.",
+    "The 2023 record supports seasonal description within one year, not long-term climate trend or future forecast claims."
+  ],
+  "gldas": {
+    "daily_rows": 365,
+    "gldas_steps_per_day_values": [
+      8
+    ],
+    "missing_days": 0,
+    "days_not_equal_to_8_steps": 0,
+    "daily_et_negative_days": 39,
+    "negative_three_hour_steps": 832,
+    "et_net_sum_2023_mm_at_point": 89.7925,
+    "root_moisture_mean_kg_m2": 106.3407,
+    "root_moisture_min_kg_m2": 103.231,
+    "root_moisture_min_date": "2023-09-13 00:00:00",
+    "root_moisture_max_kg_m2": 118.274,
+    "root_moisture_max_date": "2023-02-14 00:00:00",
+    "grid_point_lat": 30.9,
+    "grid_point_lon": 31.0
+  },
+  "gpm": {
+    "raster_metadata": {
+      "driver": "GTiff",
+      "crs": "EPSG:4326",
+      "width": 30,
+      "height": 18,
+      "count": 1,
+      "resolution_degrees": [
+        0.10000005056829331,
+        0.10000005056829331
+      ],
+      "bounds": [
+        29.49999921075229,
+        29.999999112210116,
+        32.50000072780109,
+        31.800000022439395
+      ],
+      "nodata": -9999.900390625,
+      "band_tags": {
+        "cell_methods": "time: mean",
+        "CodeMissingValue": "-9999.9",
+        "coordinates": "lat lon",
+        "DimensionNames": "time,lon,lat",
+        "fullnamepath": "/Grid/precipitation",
+        "latitude_resolution": "0.099998",
+        "longitude_resolution": "0.099991",
+        "LongName": "Merged microwave-infrared-gauge precipitation estimate",
+        "long_name": "Merged satellite-gauge precipitation estimate - Final Run (recommended for general use)",
+        "NETCDF_VARNAME": "GPM_3IMERGM_07_precipitation",
+        "origname": "precipitation",
+        "product_short_name": "GPM_3IMERGM",
+        "product_version": "07",
+        "quantity_type": "Precipitation",
+        "standard_name": "precipitation",
+        "Units": "mm/hr",
+        "_FillValue": "-9999.9004"
+      },
+      "global_tags": {
+        "GPM_3IMERGM_07_precipitation#cell_methods": "time: mean",
+        "GPM_3IMERGM_07_precipitation#CodeMissingValue": "-9999.9",
+        "GPM_3IMERGM_07_precipitation#coordinates": "lat lon",
+        "GPM_3IMERGM_07_precipitation#DimensionNames": "time,lon,lat",
+        "GPM_3IMERGM_07_precipitation#fullnamepath": "/Grid/precipitation",
+        "GPM_3IMERGM_07_precipitation#latitude_resolution": "0.099998",
+        "GPM_3IMERGM_07_precipitation#longitude_resolution": "0.099991",
+        "GPM_3IMERGM_07_precipitation#LongName": "Merged microwave-infrared-gauge precipitation estimate",
+        "GPM_3IMERGM_07_precipitation#long_name": "Merged satellite-gauge precipitation estimate - Final Run (recommended for general use)",
+        "GPM_3IMERGM_07_precipitation#origname": "precipitation",
+        "GPM_3IMERGM_07_precipitation#product_short_name": "GPM_3IMERGM",
+        "GPM_3IMERGM_07_precipitation#product_version": "07",
+        "GPM_3IMERGM_07_precipitation#quantity_type": "Precipitation",
+        "GPM_3IMERGM_07_precipitation#standard_name": "precipitation",
+        "GPM_3IMERGM_07_precipitation#units": "mm/hr",
+        "GPM_3IMERGM_07_precipitation#_FillValue": "-9999.9004",
+        "lat#axis": "Y",
+        "lat#bounds": "lat_bnds",
+        "lat#DimensionNames": "lat",
+        "lat#fullnamepath": "/Grid/lat",
+        "lat#LongName": "Latitude at the center of\n\t\t\t0.10 degree grid intervals of latitude\n\t\t\tfrom -90 to 90.",
+        "lat#origname": "lat",
+        "lat#standard_name": "latitude",
+        "lat#units": "degrees_north",
+        "lon#axis": "X",
+        "lon#bounds": "lon_bnds",
+        "lon#DimensionNames": "lon",
+        "lon#fullnamepath": "/Grid/lon",
+        "lon#LongName": "Longitude at the center of\n\t\t\t0.10 degree grid intervals of longitude \n\t\t\tfrom -180 to 180.",
+        "lon#origname": "lon",
+        "lon#standard_name": "longitude",
+        "lon#units": "degrees_east",
+        "NC_GLOBAL#Conventions": "CF-1.4",
+        "NC_GLOBAL#end_time": "2024-01-01T00:00:00Z",
+        "NC_GLOBAL#history": "Sat Nov 14 16:51:32 2026: ncks -O -x -v time_bnds timeAvgMap.GPM_3IMERGM_07_precipitation.20230101-20231231.29E_30N_32E_31N.nc timeAvgMap.GPM_3IMERGM_07_precipitation.20230101-20231231.29E_30N_32E_31N.nc\nSat Nov 14 16:51:32 2026: ncatted -a valid_range,,d,, -O -o timeAvgMap.GPM_3IMERGM_07_precipitation.20230101-20231231.29E_30N_32E_31N.nc timeAvgMap.GPM_3IMERGM_07_precipitation.20230101-20231231.29E_30N_32E_31N.nc\nSat Nov 14 16:51:32 2026: ncatted -O -a title,global,o,c,GPM_3IMERGM_07_precipitation Averaged over 2023-01-01 to 2023-12-31 timeAvgMap.GPM_3IMERGM_07_precipitation.20230101-20231231.29E_30N_32E_31N.nc\nSat Nov 14 16:51:32 2026: ncks -x -v time -o timeAvgMap.GPM_3IMERGM_07_precipitation.20230101-20231231.29E_30N_32E_31N.nc -O timeAvgMap.GPM_3IMERGM_07_precipitation.20230101-20231231.29E_30N_32E_31N.nc\nSat Nov 14 16:51:32 2026: ncwa -o timeAvgMap.GPM_3IMERGM_07_precipitation.20230101-20231231.29E_30N_32E_31N.nc -a time -O timeAvgMap.GPM_3IMERGM_07_precipitation.20230101-20231231.29E_30N_32E_31N.nc\nSat Nov 14 16:51:28 2026: ncra -D 2 -H -O -o timeAvgMap.GPM_3IMERGM_07_precipitation.20230101-20231231.29E_30N_32E_31N.nc -d lat,30.000000,31.800000 -d lon,29.500000,32.500000",
+        "NC_GLOBAL#NCO": "netCDF Operators version 5.0.7 (Homepage = http://nco.sf.net, Code = http://github.com/nco/nco)",
+        "NC_GLOBAL#plot_hint_caption": "- Selected date range was 2023-Jan - 2023-Dec. Title reflects the date range of the granules that went into making this result.",
+        "NC_GLOBAL#plot_hint_subtitle": "over 2023-01-01 00:00:00Z - 2024-01-01 00:00:00Z, Region 29.5E, 30N, 32.5E, 31.8N",
+        "NC_GLOBAL#plot_hint_title": "Time Averaged Map of Merged satellite-gauge precipitation estimate - Final Run (recommended for general use) monthly 0.1 deg. [GPM GPM_3IMERGM v07] mm/hr",
+        "NC_GLOBAL#start_time": "2023-01-01T00:00:00Z",
+        "NC_GLOBAL#title": "Time Averaged Map of Merged satellite-gauge precipitation estimate - Final Run (recommended for general use) monthly 0.1 deg. [GPM GPM_3IMERGM v07] mm/hr over 2023-01-01 00:00:00Z - 2024-01-01 00:00:00Z, Region 29.5E, 30N, 32.5E, 31.8N",
+        "NC_GLOBAL#userenddate": "2023-12-31T23:59:59Z",
+        "NC_GLOBAL#userstartdate": "2023-01-01T00:00:00Z",
+        "AREA_OR_POINT": "Area"
+      }
+    },
+    "valid_grid_cells": 540,
+    "annualized_equivalent_mean_mm_year": 116.9852,
+    "annualized_equivalent_min_mm_year": 27.01,
+    "annualized_equivalent_max_mm_year": 308.06,
+    "annualized_equivalent_mean_near_gldas_point_mm_year": 108.04
+  },
+  "noaa_reference": {
+    "station_count": 11,
+    "alexandria_records": 219,
+    "alexandria_first_date": "2023-01-01",
+    "alexandria_last_date": "2023-08-09",
+    "alexandria_tavg_days": 219,
+    "duplicate_station_days": 0,
+    "tmax_lt_tmin_flags": 0,
+    "tavg_outside_range_flags": 0
+  }
+}
